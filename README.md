@@ -2,6 +2,10 @@
 
 > A client-side github-issue site generator.
 
+## Demo
+
+[cogons.github.io](https://cogons.github.io)
+
 ## Clone
 
 ``` bash
@@ -21,9 +25,10 @@ $vi ./src/config.js
 ## Build
 
 ``` bash
-$ npm build
+$ npm run build
 $ cd dist
 
-// publish files in dist folder.
+now you can publish the whole dist folder
+once and for all.
 
 ```
