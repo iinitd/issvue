@@ -1,26 +1,38 @@
 <template>
-    <article>
-        <div class="title">{{post.title}}</div>
-        <p v-html="post.body"
-           class="content"></p>
-        <div class="coms">
-            <div class="leave"><a v-bind:href="post.html_url">leave a comment</a></div>
-            <div v-for="c in coms"
-                 class="com">
-                <a :href="c.html_url"
-                   target="_blank"><img :src="c.user.avatar_url"></a>
-                <p>{{c.body}}
-                </p>
+    <div class="container">
+        <main-header :mytitle="post.title"
+                     :mydes="post.created_at"></main-header>
+        <article>
+            <p v-html="post.body"
+               class="content markdown-body"></p>
+            <div class="coms">
+                <div class="leave"><a v-bind:href="post.html_url">leave a comment</a></div>
+                <div v-for="c in coms"
+                     class="com">
+                    <a :href="c.html_url"
+                       target="_blank"><img :src="c.user.avatar_url"></a>
+                    <p>{{c.body}}
+                    </p>
+                </div>
             </div>
-        </div>
-    </article>
+        </article>
+    </div>
 </template>
 
 <script>
 import * as github from '../utils/github';
+import * as utils from '../utils/utils';
+import '../assets/css/github-markdown.css'
 import md from 'marked';
+import highlightjs from 'highlight.js'
+import 'highlight.js/styles/googlecode.css'
+import MainHeader from '../components/main-header.vue';
+
 export default {
     name: 'post',
+    components: {
+        MainHeader
+    },
     data() {
         return {
             post: {},
@@ -30,12 +42,16 @@ export default {
     created: function () {
         const vm = this;
         const id = vm.$route.params.id;
+        md.setOptions({
+            highlight: (code) => highlightjs.highlightAuto(code).value
+        })
         github.getIssue(id)
             .then(function (res) {
                 vm.post = res.data.filter((p) => {
                     return p.number == id
                 })[0]
                 vm.post.body = md(vm.post.body);
+                vm.post.created_at = utils.timeFormat(vm.post.created_at)
             });
         github.getComs(id)
             .then(function (res) {
@@ -48,6 +64,15 @@ export default {
 <style scoped>
 article {
     padding: 40px;
+}
+
+.meta {
+    padding: 30px 0 40px 0;
+    text-align: center;
+}
+
+.meta span {
+    display: block;
 }
 
 .title {

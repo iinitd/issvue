@@ -8,25 +8,24 @@
 import config from '../config'
 export default {
   name: 'main-footer',
-    data() {
-        return {
-            owner:config.user,
-            url:'https://github.com/'+config.user
-        }
-    },
+  data: function() {
+    return {
+      owner: config.repo.user,
+      url: 'https://github.com/' + config.repo.user
+    }
+  }
 };
 </script>
 <style scoped>
-
-footer{
+footer {
   text-align: center;
   font-size: 11px;
-  padding:30px 0;
-  color:#999;
-}
-footer a{
-  font-weight: bold;
-  color:#999;
+  padding: 30px 0;
+  color: #999;
 }
 
+footer a {
+  font-weight: bold;
+  color: #999;
+}
 </style>

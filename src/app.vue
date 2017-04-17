@@ -1,12 +1,8 @@
 <template>
-<div>
-  <div class="container">
-    <main-header></main-header>
+  <div>
     <router-view></router-view>
+    <main-footer></main-footer>
   </div>
-      <main-footer></main-footer>
-    </div>
-  
 </template>
 
 <script>
@@ -16,7 +12,7 @@ import MainFooter from './components/main-footer.vue';
 
 export default {
   name: 'app',
-  components:{
+  components: {
     MainHeader,
     MainFooter
   }
@@ -24,31 +20,38 @@ export default {
 </script>
 
 <style>
-*{
+* {
   box-sizing: border-box;
--webkit-box-sizing: border-box;
--moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-body{
+
+body {
   background-color: #f7f9fb;
-font-family: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
-font-size: 15px;
-color: #262626;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+  font-family: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
+  font-size: 15px;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-a,a:hover{
-  color:#262626;
-text-decoration: none;
-transition: opacity .5s ease;
--webkit-transition: opacity .5s ease;
--moz-transition: opacity .5s ease;
+
+a,
+a:hover {
+  color: #262626;
+  text-decoration: none;
+  transition: opacity .5s ease;
+  -webkit-transition: opacity .5s ease;
+  -moz-transition: opacity .5s ease;
 }
-a:hover{
+
+a:hover {
   opacity: 0.6
 }
-.container{
-  margin:0 auto;
+
+.container {
+  margin: 0 auto;
   margin-top: 50px;
   max-width: 55%;
   background-color: #fff;

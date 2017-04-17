@@ -3,10 +3,10 @@ import config from '../config'
 import * as session from './session';
 
 var api = 'https://api.github.com/repos/';
-var token = config.token;
+var token = config.repo.token;
 
 export function getIssue() {
-    const url = api + config.user + '/' + config.repo + '/issues' + '?token=' + token;
+    const url = api + config.repo.user + '/' + config.repo.repo + '/issues' + '?token=' + token;
     if (!session.get('res')) {
         return axios.get(url)
             .then((res) => {
@@ -27,7 +27,7 @@ export function getIssue() {
 }
 
 export function getComs(id) {
-    const url = api + config.user + '/' + config.repo + '/issues/' + id + '/comments' + '?token=' + token;
+    const url = api + config.repo.user + '/' + config.repo.repo + '/issues/' + id + '/comments' + '?token=' + token;
     if (!session.get('c' + id)) {
         return axios.get(url)
             .then((res) => {
@@ -42,7 +42,7 @@ export function getComs(id) {
     else {
         return new Promise(function (resolve, reject) {
             console.dir('from ss')
-            resolve(session.get('c'+id));
+            resolve(session.get('c' + id));
         });
     }
 }

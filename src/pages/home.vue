@@ -1,24 +1,34 @@
 <template>
-  <div class="home">
-    <div v-for="p in posts"
-         class="post">
-      <div class="meta"><span class="date">{{p.date}}</span>
-        <span class="labels">
-        <a v-for="label in p.labels">{{label.name}}</a>
-      </span> </div>
-      <router-link :to="{ path: '/post/'+p.number }">{{p.title}}</router-link>
+  <div class="container">
+    <main-header></main-header>
+    <div class="home">
+      <div v-for="p in posts"
+           class="post">
+        <div class="meta"><span class="date">{{p.date}}</span>
+          <span class="labels">
+          <a v-for="label in p.labels">{{label.name}}</a>
+        </span> </div>
+        <router-link :to="{ path: '/post/'+p.number }">{{p.title}}</router-link>
   
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import * as github from '../utils/github';
+import * as utils from '../utils/utils';
+import MainHeader from '../components/main-header.vue';
+
 export default {
   name: 'home',
+  components: {
+    MainHeader
+  },
   data() {
     return {
-      posts: []
+      posts: [],
+
     }
   },
 
@@ -30,21 +40,12 @@ export default {
           return {
             title: p.title,
             number: p.number,
-            date: vm.timeFormat(p.created_at),
+            date: utils.timeFormat(p.created_at),
             labels: p.labels
           }
         })
       })
 
-  },
-  methods: {
-    timeFormat: (_date) => {
-      const date = new Date(_date);
-      const year = date.getFullYear();
-      const month = ('0' + (date.getMonth() + 1)).slice(-2)
-      const day = ('0' + date.getDate()).slice(-2)
-      return year + '-' + month + '-' + day
-    }
   }
 };
 </script>
@@ -59,7 +60,7 @@ export default {
 }
 
 .meta {
-  padding: 10px 0;
+  padding: 5px 0;
   font-size: 13px;
 }
 
