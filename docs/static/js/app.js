@@ -245,6 +245,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
+    // hello world
+
     blog: {
         title: 'Cogons', // display on upper left corner
         welcome: 'Welcome to issvue', // display on homepage
@@ -402,7 +404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     MainHeader: __WEBPACK_IMPORTED_MODULE_2__components_main_header_vue___default.a
   },
-  data() {
+  data: function () {
     return {
       posts: []
 
@@ -533,7 +535,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         MainHeader: __WEBPACK_IMPORTED_MODULE_6__components_main_header_vue___default.a
     },
-    data() {
+    data: function () {
         return {
             post: {},
             coms: []
@@ -684,4 +686,3 @@ module.exports = Component.exports
 /***/ })
 
 },[41]);
-//# sourceMappingURL=app.465cc7830cf0398e1754.js.map

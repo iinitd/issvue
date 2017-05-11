@@ -1,5 +1,7 @@
 export default {
 
+    // hello world
+
     blog: {
         title: 'Cogons', // display on upper left corner
         welcome: 'Welcome to issvue', // display on homepage

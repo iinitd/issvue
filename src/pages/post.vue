@@ -33,7 +33,7 @@ export default {
     components: {
         MainHeader
     },
-    data() {
+    data: function(){
         return {
             post: {},
             coms: []
