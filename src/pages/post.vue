@@ -7,17 +7,18 @@
                class="content markdown-body"></p>
             <div class="coms">
                 <div class="leave"><a v-bind:href="post.html_url">leave a comment</a></div>
-                <div v-for="c in coms"
+                <div class="com_area"><div v-for="c in coms"
                      class="com">
                     <a :href="c.html_url"
                        target="_blank"><img :src="c.user.avatar_url"></a>
                     <p>{{c.body}}
                     </p>
-                </div>
+                </div></div>
             </div>
         </article>
     </div>
 </template>
+
 
 <script>
 import * as github from '../utils/github';
@@ -39,7 +40,7 @@ export default {
             coms: []
         }
     },
-    created: function () {
+    mounted: function () {
         const vm = this;
         const id = vm.$route.params.id;
         md.setOptions({
@@ -47,7 +48,7 @@ export default {
         })
         github.getIssue(id)
             .then(function (res) {
-                vm.post = res.data.filter((p) => {
+                vm.post = res.filter((p) => {
                     return p.number == id
                 })[0]
                 vm.post.body = md(vm.post.body);
@@ -55,7 +56,7 @@ export default {
             });
         github.getComs(id)
             .then(function (res) {
-                vm.coms = res.data
+                vm.coms = res
             })
 
     }
@@ -63,7 +64,9 @@ export default {
 </script>
 <style scoped>
 article {
-    padding: 40px;
+      padding: 60px;
+    border-radius: 8px;
+    background: #FFF;
 }
 
 .meta {
@@ -84,7 +87,7 @@ article {
 
 .leave {
     text-align: center;
-    padding: 40px 0;
+    padding: 80px 0 20px 0;
 }
 
 .leave a {
@@ -94,7 +97,10 @@ article {
     border-radius: 6px;
     border: 1px solid #2196F3;
 }
+.com_area{
+    margin-top:20px;
 
+}
 .com {
     padding: 10px 0;
     display: flex;

@@ -6,9 +6,11 @@
 </template>
 
 <script>
-import * as github from './utils/github';
 import MainHeader from './components/main-header.vue';
 import MainFooter from './components/main-footer.vue';
+import axios from 'axios';
+
+
 
 export default {
   name: 'app',
@@ -29,7 +31,7 @@ export default {
 }
 
 body {
-  background-color: #f7f9fb;
+  background: #2196F3;
   font-family: "Lucida Grande", Lucida Sans Unicode, Hiragino Sans GB, WenQuanYi Micro Hei, Verdana, Aril, sans-serif;
   font-size: 15px;
   color: #262626;
@@ -53,9 +55,8 @@ a:hover {
 .container {
   margin: 0 auto;
   margin-top: 50px;
-  max-width: 55%;
-  background-color: #fff;
+  max-width: 80%;
+  background-color: #2196F3;
   border-radius: 6px;
-  box-shadow: 0px 20px 150px #d6dee4;
 }
 </style>

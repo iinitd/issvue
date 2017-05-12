@@ -1,18 +1,21 @@
 import axios from 'axios';
-import config from '../config'
+//import conf from '../config'
 import * as session from './session';
+import * as config from './config';
+
 
 var api = 'https://api.github.com/repos/';
-var token = config.repo.token;
+
 
 export function getIssue() {
-    const url = api + config.repo.user + '/' + config.repo.repo + '/issues' + '?token=' + token;
+    const cfg = global.cfg
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues' + '?token=' + cfg.repo.token;
     if (!session.get('res')) {
         return axios.get(url)
             .then((res) => {
                 console.dir('from axios')
-                session.set('res', res)
-                return res
+                session.set('res', res.data)
+                return res.data
             })
             .catch((error) => {
                 console.log(error);
@@ -27,13 +30,14 @@ export function getIssue() {
 }
 
 export function getComs(id) {
-    const url = api + config.repo.user + '/' + config.repo.repo + '/issues/' + id + '/comments' + '?token=' + token;
+    const cfg = global.cfg
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues/' + id + '/comments' + '?token=' + cfg.repo.token;
     if (!session.get('c' + id)) {
         return axios.get(url)
             .then((res) => {
                 console.dir('from axios')
-                session.set('c' + id, res)
-                return res;
+                session.set('c' + id, res.data)
+                return res.data;
             })
             .catch((error) => {
                 console.log(error);

@@ -5,27 +5,38 @@
 </template>
 
 <script>
-import config from '../config'
+//import config from '../config'
+import * as config from '../utils/config';
 export default {
   name: 'main-footer',
   data: function() {
     return {
-      owner: config.repo.user,
-      url: 'https://github.com/' + config.repo.user
+      owner: 'issvue',
+      url: 'https://github.com/'
     }
-  }
-};
+  },
+  created:function(){
+
+    const vm = this
+    const cfg = global.cfg
+
+
+    vm.owner = cfg.repo.user
+    vm.url += cfg.repo.user
+
+
+}};
 </script>
 <style scoped>
 footer {
   text-align: center;
-  font-size: 11px;
-  padding: 30px 0;
-  color: #999;
+  font-size: 14px;
+  padding: 50px 0;
+  color: #FFF;
 }
 
 footer a {
   font-weight: bold;
-  color: #999;
+  color: #FFF;
 }
 </style>
