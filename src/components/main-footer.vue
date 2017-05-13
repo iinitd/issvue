@@ -6,7 +6,6 @@
 
 <script>
 //import config from '../config'
-import * as config from '../utils/config';
 export default {
   name: 'main-footer',
   data: function() {

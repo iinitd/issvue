@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import * as config from '../utils/config';
 
 export default {
   name: 'main-header',
