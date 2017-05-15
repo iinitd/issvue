@@ -92,8 +92,6 @@ nav {
 
 .logo {
   float: left;
-  padding: 4px;
-  margin: 4px 6px;
 }
 
 nav ul {

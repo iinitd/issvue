@@ -3,7 +3,7 @@ import App from './app';
 import VueRouter from 'vue-router'
 import Index from './pages/index.vue'
 import Post from './pages/post.vue'
-import {init} from './utils/config';
+import {init} from './io';
 import axios from 'axios';
 
 

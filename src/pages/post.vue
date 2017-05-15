@@ -21,7 +21,7 @@
 
 
 <script>
-import * as github from '../utils/github';
+import * as github from '../io';
 import * as utils from '../utils/utils';
 import '../assets/css/github-markdown.css'
 import md from 'marked';
@@ -34,6 +34,9 @@ export default {
     components: {
         MainHeader
     },
+    beforeCreate:function(){
+    document.title = global.cfg.blog.title
+  },
     data: function(){
         return {
             post: {},
@@ -51,6 +54,7 @@ export default {
                 vm.post = res.filter((p) => {
                     return p.number == id
                 })[0]
+                document.title = vm.post.title+" - "+global.cfg.blog.title
                 vm.post.body = md(vm.post.body);
                 vm.post.created_at = utils.timeFormat(vm.post.created_at)
             });

@@ -2,15 +2,15 @@
   <div class="container">
     <main-header></main-header>
     <div class="home">
-      <div v-for="p in tops"
+      <div v-for="p in pin_posts"
            class="post">
         <div class="meta"><span class="date">{{p.date}}</span>
           <span class="labels">
-            <a v-for="label in p.labels">{{label.name}}</a>
-          </span> </div>
+              <a v-for="label in p.labels">{{label.name}}</a>
+            </span> </div>
         <div>
           <span class="top">pin!</span>
-        <router-link :to="{ path: '/post/'+p.number }">{{p.title}}</router-link>
+          <router-link :to="{ path: '/post/'+p.number }">{{p.title}}</router-link>
         </div>
       </div>
       <hr>
@@ -18,8 +18,8 @@
            class="post">
         <div class="meta"><span class="date">{{p.date}}</span>
           <span class="labels">
-            <a v-for="label in p.labels">{{label.name}}</a>
-          </span> </div>
+              <a v-for="label in p.labels">{{label.name}}</a>
+            </span> </div>
         <router-link :to="{ path: '/post/'+p.number }">{{p.title}}</router-link>
   
       </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import * as github from '../utils/github';
+import * as github from '../io';
 import * as utils from '../utils/utils';
 import MainHeader from '../components/main-header.vue';
 
@@ -37,114 +37,123 @@ export default {
   components: {
     MainHeader
   },
-  data: function() {
+  data: function () {
     return {
       posts: [],
-      tops:[]
+      pin_posts: []
 
     }
   },
-  create:function(){
-
-    cfg2 = global.cfg
-
+  beforeCreate: function () {
+    document.title = global.cfg.blog.title
   },
-
   mounted: function () {
     const vm = this;
     const cfg = global.cfg
     github.getIssue()
-      .then(this.put)
+      .then(this.filter)
 
   },
-  methods:{
+  methods: {
 
-   getTops: function (posts, pos) {
-     let l = pos.length
+    getPin: function (posts, pos) {
+      let l = pos.length
       return posts.filter((p) => {
         if (p.number == pos[l - 1]) {
-          l--
-          return true
+          return l--
         }
         else return false
       })
     },
-    put:function(res){
+    getAuthor: function () {
+      var author = {}
+      cfg.repo.authors.map(function (x) {
+        author[x] = true
+      })
+      return author
+    },
+    format: function (p) {
+      var obj = {
+        title: p.title,
+        number: p.number,
+        date: utils.timeFormat(p.created_at),
+        labels: p.labels
+      }
+      return obj
+    },
+    filter: function (posts) {
       const vm = this;
       const cfg = global.cfg
-      vm.tops = vm.getTops(res, cfg.tops).map((p) => {
-          return {
-            title: p.title,
-            number: p.number,
-            date: utils.timeFormat(p.created_at),
-            labels: p.labels
+      var res = []
+      const author = this.getAuthor()
+      const pin = cfg.pin
+      var l = pin.length
+      posts.map(function (p) {
+        if (author[p.user.login]) {
+          if (p.number == cfg.pin[l - 1]) {
+
+            vm.pin_posts.push({
+              title: p.title,
+              number: p.number,
+              date: utils.timeFormat(p.created_at),
+              labels: p.labels
+            })
+            l--
           }
-        })
-      vm.posts = res.map((p) => {
-          return {
-            title: p.title,
-            number: p.number,
-            date: utils.timeFormat(p.created_at),
-            labels: p.labels
+          else {
+            vm.posts.push({
+              title: p.title,
+              number: p.number,
+              date: utils.timeFormat(p.created_at),
+              labels: p.labels
+            })
           }
-        })
-
-      }
-
-
-
-    
+        }
+      })
+    }
   }
-
-
-
-
-
 };
 </script>
 <style scoped>
 .home {
   padding: 30px;
-    border-radius: 8px;
-    background: #FFF;
-
+  border-radius: 8px;
+  background: #FFF;
 }
 
 .post {
   padding: 20px 30px;
   border-bottom: 0px solid #eee;
-  border-radius:8px;
+  border-radius: 8px;
 }
 
-.post:hover{
-  background: #f7f9fb;;
+.post:hover {
+  background: #f7f9fb;
+  ;
   -webkit-transition: .5s;
-transition: .5s;
+  transition: .5s;
   -moz-transition: .5s;
 }
 
-.post a{
-  color:#333;
+.post a {
+  color: #333;
 }
 
-.post a:hover{
+.post a:hover {
   color: #000;
-  opacity:1;
+  opacity: 1;
   -webkit-transition: .5s;
-transition: .5s;
+  transition: .5s;
   -moz-transition: .5s;
-
 }
 
 .meta {
-  margin-bottom:8px;
+  margin-bottom: 8px;
   font-size: 13px;
-
 }
 
 .date {
   color: #999;
-  
 }
 
 .labels {
@@ -157,19 +166,19 @@ transition: .5s;
   color: #00c853;
 }
 
-.top{
-  display:inline-block;
+.top {
+  display: inline-block;
   background: #FFF;
-  margin:3px 6px 3px 0;
-  padding:2px 4px;
+  margin: 3px 6px 3px 0;
+  padding: 2px 4px;
   font-size: 12px;
   border-radius: 3px;
-  color:#f05f5a;
-  border:1px solid #f05f5a;
+  color: #f05f5a;
+  border: 1px solid #f05f5a;
 }
 
-hr{
+hr {
   border: 1px solid #efefef;
-  margin:30px;
+  margin: 30px;
 }
 </style>
