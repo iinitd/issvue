@@ -1,6 +1,6 @@
 {
     "blog": {
-        "title": "C2ogons",
+        "title": "Cogons",
         "welcome": "Welcome to issvue",
         "detail": "This is a client-side github-issue blog generator."
     },
@@ -12,17 +12,17 @@
     },
     "nav": [
         {
-            "name": "social",
-            "url": "https:///www.zhihu.com//people//mustaxu"
+            "name": "Social",
+            "url": "https://www.zhihu.com/people/mustaxu"
         },
         {
-            "name": "github",
-            "url": "https:///github.com//cogons"
+            "name": "Github",
+            "url": "https://github.com/cogons"
         },
         {
             "name": "Star&Fork",
-            "url": "https:///github.com//cogons//issvue"
+            "url": "https://github.com/cogons/issvue"
         }
     ],
-    "pin":[1,2]
+    "pin":[5]
 }
