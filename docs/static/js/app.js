@@ -627,7 +627,7 @@ function getSession(key) {
 
 function getIssue() {
     const cfg = global.cfg;
-    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues' + '?token=' + cfg.repo.token;
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues' + '?token=' + cfg.repo.read_only_token;
     if (!getSession('res')) {
         return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(res => {
             console.dir('from axios');
@@ -646,7 +646,7 @@ function getIssue() {
 
 function getComs(id) {
     const cfg = global.cfg;
-    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues/' + id + '/comments' + '?token=' + cfg.repo.token;
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues/' + id + '/comments' + '?token=' + cfg.repo.read_only_token;
     if (!getSession('c' + id)) {
         return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(res => {
             console.dir('from axios');

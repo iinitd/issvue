@@ -38,7 +38,7 @@ function getSession(key) {
 
 export function getIssue() {
     const cfg = global.cfg
-    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues' + '?token=' + cfg.repo.token;
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues' + '?token=' + cfg.repo.read_only_token;
     if (!getSession('res')) {
         return axios.get(url)
             .then((res) => {
@@ -60,7 +60,7 @@ export function getIssue() {
 
 export function getComs(id) {
     const cfg = global.cfg
-    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues/' + id + '/comments' + '?token=' + cfg.repo.token;
+    const url = api + cfg.repo.user + '/' + cfg.repo.repo + '/issues/' + id + '/comments' + '?token=' + cfg.repo.read_only_token;
     if (!getSession('c' + id)) {
         return axios.get(url)
             .then((res) => {

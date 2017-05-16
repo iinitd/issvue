@@ -1,46 +1,65 @@
-# 有话说
+# Issvue
 
-一直都觉得用issue写blog简直是懒人福音。
-但是github issue的层级太深，一直不大像一个blog。
-于是有了这个idea。
+A Client-side Github-issue Blog Generator.
 
-# 用户手册
+# Features
 
-1. fork [issvue-to-go](https://github.com/cogons/issvue-to-go)
+1. Completely back-end free.
 
-2. 在 ./static/app.js 中定位到 `hello world`，修改配置。
+2. Ready to use. Create your blog on github website.
 
-3. 开启github-pages。
+3. Vue.js based, friendly for developers.
 
-4. 你的博客就做好了。
+4. Well-designed template.
 
+5. Multiple authors. Exclude unexpected issues.
 
-## 开发者说明
+# For Users
 
-1. 你需要有node。
+A ready-to-use version is under docs folder.
 
-2. 你需要把[本项目](https://github.com/cogons/issvue)clone到本地。
+Just fork it, and everything is set up already.
+
+1. Fork [me](https://github.com/cogons/issvue-to-go).
+
+2. Edit /docs/static/config.json.
+
+3. Select `use docs folder` for your Github Pages.
+
+4. Your blog is ready.
+
+## For Developers
+
+1. First you need node.js.
+
+2. Clone [me](https://github.com/cogons/issvue).
 
 `$ git clone https://github.com/cogons/issvue.git`
 
-3. 安装相关包。
+3. Install dependencies.
 
 `$ cd issvue && npm install`。
 
-4. 修改 ./src/config.js 中相关配置。
-`$ vi ./src/config.js`
+4. Edit config under **/static** & **/src/static**.
 
-5. 随便改改。
+`$ cd static && vi config.json`
 
-6. 重新打包blog。
+`$ cp -f config.json ../src/static/config.json`
+
+5. Look around.
+
+6. Rebuild your blog.
+
 `$ npm run build`。
 
-7. 生成的blog将存放在docs目录中。
+7. Your blog is ready in **docs** folder.
 
-# 项目你所能了解的
+# Todos
 
-- vue-cli
-- axios
-- Promise
-- sessionStorage
-- Other minor things ..
+1. category page
+
+2. pagination
+
+3. single page (about)
+
+You are welcome to **open an issue** on any advices or bugs.
