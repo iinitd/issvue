@@ -1,14 +1,14 @@
 <template>
   <header>
     <nav>
+    <router-link class="logo"
+                   to="/">{{blog.title}}</router-link>
       <ul>
         <li v-for="item in nav">
           <a :href="item.url"
              target="_blank">{{item.name}}</a>
         </li>
       </ul>
-      <router-link class="logo"
-                   to="/">{{blog.title}}</router-link>
     </nav>
     <section class="meta">
       <template v-if="mytitle">
@@ -82,20 +82,21 @@ header a {
 
 nav {
   top: 30px;
+  width:80%;
   margin: 0 auto;
-  display: block;
-  width: 80%;
+  display: flex;
   overflow: auto;
   z-index: 10;
   position: absolute;
+  justify-content:space-between;
 }
 
 .logo {
-  float: left;
+  
 }
 
 nav ul {
-  float: right;
+  
 }
 
 nav li {
@@ -106,20 +107,8 @@ nav li {
 
 
 nav li a{
-  padding: 10px;
-  margin: 10px 10px;
-  border-bottom: 3px solid transparent;
-    -webkit-transition: all .5s ease;
-transition: all .5s ease;
-background:  #2196F3;
+  margin: 20px 20px;
 
-
-}
-
-nav li a:hover{
-  border-bottom:3px solid #FFF;
-  padding-bottom: 12px;
-  opacity: 1;
 }
 
 

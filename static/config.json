@@ -8,10 +8,9 @@
         "user": "cogons",
         "repo": "blog",
         "read_only_token": "6c1f1612f103c435991969309947995904f4451c",
-        "authors":["cogons"]
+        "authors": ["cogons"]
     },
-    "nav": [
-        {
+    "nav": [{
             "name": "Social",
             "url": "https://www.zhihu.com/people/mustaxu"
         },
@@ -24,5 +23,5 @@
             "url": "https://github.com/cogons/issvue"
         }
     ],
-    "pin":[5]
+    "pin": [4, 5]
 }

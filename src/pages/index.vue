@@ -91,7 +91,6 @@ export default {
       posts.map(function (p) {
         if (author[p.user.login]) {
           if (p.number == cfg.pin[l - 1]) {
-
             vm.pin_posts.push({
               title: p.title,
               number: p.number,
