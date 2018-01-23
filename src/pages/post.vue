@@ -25,9 +25,17 @@ import * as github from '../io';
 import * as utils from '../utils/utils';
 import '../assets/css/github-markdown.css'
 import md from 'marked';
+import emoji from 'node-emoji'
 import highlightjs from 'highlight.js'
 import 'highlight.js/styles/googlecode.css'
 import MainHeader from '../components/main-header.vue';
+
+let parse = (markdown) => {
+  const replacer = (match) => emoji.emojify(match)
+  markdown = markdown.replace(/(:.*:)/g, replacer)
+	 
+  return md(markdown)
+}
 
 export default {
     name: 'post',
@@ -55,7 +63,7 @@ export default {
                     return p.number == id
                 })[0]
                 document.title = vm.post.title+" - "+global.cfg.blog.title
-                vm.post.body = md(vm.post.body);
+                vm.post.body = parse(vm.post.body);
                 vm.post.created_at = utils.timeFormat(vm.post.created_at)
             });
         github.getComs(id)
